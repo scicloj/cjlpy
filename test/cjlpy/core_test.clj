@@ -20,3 +20,11 @@
                 "x*y"))))
 
 
+(deftest error-test
+
+  (is
+   (not (error? (evalpy "1/1"))))
+
+  (is
+   (error? (evalpy "1/0"))))
+

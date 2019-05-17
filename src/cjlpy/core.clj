@@ -47,26 +47,32 @@
    [:get (name varname)]))
 
 (defn dopy
-  [& statements]
-  (doseq [statement statements]
+  [& codes]
+  (doseq [code codes]
     (at-thread
-     [:eval statement])))
+     [:eval code])))
 
 (defn rand-varname []
   (str "x" (rand-int 99999999)))
 
-(defn assignment [varname expression]
-  (str varname "=(" expression ")"))
+(defn assignment [varname code]
+  (str varname "=(" code ")"))
+
+(defn error? [result]
+  (and (vector? result)
+       (-> result first (= :error))))
 
 (defn evalpy
-  [& expressions]
-  (let [varname (rand-varname)]
-    (if (->> expressions
-             last
-             (assignment varname)
-             vector
-             (concat (butlast expressions))
-             (apply dopy)
-             (not= :error))
+  [& codes]
+  (let [varname (rand-varname)
+        result (->> codes
+                            last
+                            (assignment varname)
+                            vector
+                            (concat (butlast codes))
+                            (#(do (println (pr-str %))
+                                  %))
+                            (apply dopy))]
+    (if (not (error? result))
       (getpy varname)
-      :error)))
+      result)))
