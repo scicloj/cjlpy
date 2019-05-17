@@ -48,9 +48,11 @@
 
 (defn dopy
   [& codes]
-  (doseq [code codes]
-    (at-thread
-     [:eval code])))
+  (->> codes
+       (mapv (fn [code]
+               {:code   code
+                :result (at-thread
+                         [:eval code])}))))
 
 (defn rand-varname []
   (str "x" (rand-int 99999999)))
