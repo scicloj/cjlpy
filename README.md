@@ -2,6 +2,10 @@
 
 Using Python from Clojure - experimental.
 
+## Why the name cjlpy
+
+Cljpy was already used. You can pronounce cjlpy like "kill-pie".
+
 ## Usage
 
 For now, this is an experiment, not a library yet. To play with it:
