@@ -36,7 +36,7 @@
       (async/>!! in-channel form)
       (async/<!! out-channel))))
 
-(defn setpy
+(defn setpy!
   [^String varname value]
   (at-thread
    [:set (name varname) value]))
@@ -46,7 +46,7 @@
   (at-thread
    [:get (name varname)]))
 
-(defn dopy
+(defn dopy!
   [& codes]
   (->> codes
        (mapv (fn [code]
@@ -74,7 +74,9 @@
                             (concat (butlast codes))
                             (#(do (println (pr-str %))
                                   %))
-                            (apply dopy))]
+                            (apply dopy!))]
     (if (not (error? result))
       (getpy varname)
       result)))
+
+

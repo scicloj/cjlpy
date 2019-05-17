@@ -7,11 +7,11 @@
 
   (is
    (do
-     (setpy :x 2)
+     (setpy! :x 2)
      (= 2 (getpy :x))))
 
   (is
-   (do (dopy "x=3")
+   (do (dopy! "x=3")
        (= 3 (getpy :x))))
 
   (is
