@@ -1,8 +1,12 @@
 (ns cjlpy.core
   (:require [clojure.core.async :as async])
-  (:import (jep Jep JepConfig NDArray)))
+  (:import (jep Jep JepConfig MainInterpreter NDArray)))
 
 (set! *warn-on-reflection* true)
+
+(defonce run-once
+  ;; https://github.com/ninia/jep/issues/187#issue-439929865
+  (MainInterpreter/setSharedModulesArgv (into-array String [""])))
 
 (defn ->jep []
   (Jep.
@@ -94,4 +98,7 @@
 (def ndarray->vec
   (comp vec ndarray->array))
 
+;; https://github.com/ninia/jep/issues/187#issue-439929865
+(dopy "import sys"
+      "sys.argv=['']")
 
