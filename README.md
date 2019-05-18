@@ -1,3 +1,11 @@
+*Tell me right away if I’m disturbing you,*  
+*he said as he stepped inside my door,*  
+*and I’ll leave at once.*  
+*You not only disturb me, I said,*  
+*you shatter my entire existence.*  
+*Welcome.*  
+ -- **Eeva Kilpi** (translated by Börje Vähämäki)
+
 # cjlpy
 
 Using Python from Clojure - experimental.
@@ -7,20 +15,6 @@ Using Python from Clojure - experimental.
 Cljpy was already used. You can pronounce cjlpy like "kilpi".
 
 ---
-
-*Tell me right away if I’m disturbing you,*
-
-*he said as he stepped inside my door,*
-
-*and I’ll leave at once.*
-
-*You not only disturb me, I said,*
-
-*you shatter my entire existence.*
-
-*Welcome.*
-
- -- **Eeva Kilpi** (translated by Börje Vähämäki)
 
 
 ## Usage
