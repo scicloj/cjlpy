@@ -4,7 +4,8 @@ Using Python from Clojure - experimental.
 
 ## Why the name cjlpy
 
-Cljpy was already used. You can pronounce cjlpy like "kill-pie".
+Cljpy was already used. You can pronounce cjlpy like "kilpi".
+
 
 ## Usage
 
