@@ -33,8 +33,7 @@
                                        (.eval jep code)))
                              (catch Exception e
                                [:error e]))
-                           (or :nil)))))
-        (.close jep)))
+                           (or :nil)))))))
     (fn [form]
       (async/>!! in-channel form)
       (async/<!! out-channel))))
