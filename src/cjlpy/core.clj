@@ -7,8 +7,7 @@
 (defn ->jep []
   (Jep.
    (doto (JepConfig.)
-     (.addSharedModules (into-array String ["numpy"])))))
-
+     (.addSharedModules (into-array String ["numpy" "sys"])))))
 
 (def at-thread
   "Sending instruction to the same (new) jep object on the same thread.
@@ -26,8 +25,8 @@
                                        (.set jep (name varname) value))
                                :get  (let [[varname] args]
                                        (.getValue jep (name varname)))
-                               :eval (let [[python-statement] args]
-                                       (.eval jep python-statement)))
+                               :eval (let [[code] args]
+                                       (.eval jep code)))
                              (catch Exception e
                                [:error e]))
                            (or :nil)))))
@@ -36,7 +35,7 @@
       (async/>!! in-channel form)
       (async/<!! out-channel))))
 
-(defn setpy!
+(defn setpy
   [^String varname value]
   (at-thread
    [:set varname value]))
@@ -46,7 +45,7 @@
   (at-thread
    [:get varname]))
 
-(defn dopy!
+(defn dopy
   [& codes]
   (->> codes
        (mapv (fn [code]
@@ -74,7 +73,7 @@
                      (concat (butlast codes))
                      (#(do (println (pr-str %))
                            %))
-                     (apply dopy!))]
+                     (apply dopy))]
     (if (not (error? result))
       (getpy varname)
       result)))
@@ -89,3 +88,5 @@
 
 (def ndarray->vec
   (comp vec ndarray->array))
+
+
