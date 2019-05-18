@@ -20,6 +20,10 @@ For now, this is an experiment, not a library yet. To play with it:
 ### More efficient use of Jep objects
 Jep does not allow creating two distinct Jep objects in the same thread. So, for decent behavior at Clojure, currently we creating a new Jep in a new thread every time we need to use it. This may be wasteful. We should have one (resettable) Jep object per threar.
 
+## Related projects
+
+- [tech.python] implements python interop through Jep, too. It also wraps [Numpy](https://www.numpy.org) with the [tech.datatype](https://github.com/techascent/tech.datatype) abstraction.
+
 ## License
 
 Copyright © 2019 Scicloj
