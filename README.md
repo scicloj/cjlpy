@@ -21,6 +21,9 @@ For now, this is an experiment, not a library yet. To play with it:
 This will make it possible to generate code as clojure data structures (that get translated into hy forms).
 Currently, there is a problem -- `import hy` fails.
 
+### More efficient use of Jep objects
+Jep does not allow creating two distinct Jep objects in the same thread. So, for decent behavior at Clojure, currently we creating a new Jep in a new thread every time we need to use it. This may be wasteful. We should have one (resettable) Jep object per threar.
+
 ## License
 
 Copyright © 2019 Scicloj
