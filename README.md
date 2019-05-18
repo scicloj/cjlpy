@@ -23,7 +23,7 @@ Jep does not allow creating two distinct Jep objects in the same thread. So, for
 
 ## Related projects
 
-- [tech.python] implements python interop through Jep, too. It also wraps [Numpy](https://www.numpy.org) with the [tech.datatype](https://github.com/techascent/tech.datatype) abstraction.
+- [tech.python](https://github.com/techascent/tech.python) implements python interop through Jep, too. It also wraps [Numpy](https://www.numpy.org) with the [tech.datatype](https://github.com/techascent/tech.datatype) abstraction.
 
 ## License
 
