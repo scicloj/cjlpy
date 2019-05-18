@@ -23,9 +23,9 @@
                        (-> (try
                              (case op
                                :set  (let [[^String varname value] args]
-                                       (.set jep varname value))
+                                       (.set jep (name varname) value))
                                :get  (let [[varname] args]
-                                       (.getValue jep varname))
+                                       (.getValue jep (name varname)))
                                :eval (let [[python-statement] args]
                                        (.eval jep python-statement)))
                              (catch Exception e
@@ -39,12 +39,12 @@
 (defn setpy!
   [^String varname value]
   (at-thread
-   [:set (name varname) value]))
+   [:set varname value]))
 
 (defn getpy
   [varname]
   (at-thread
-   [:get (name varname)]))
+   [:get varname]))
 
 (defn dopy!
   [& codes]
@@ -67,16 +67,25 @@
 (defn evalpy
   [& codes]
   (let [varname (rand-varname)
-        result (->> codes
-                            last
-                            (assignment varname)
-                            vector
-                            (concat (butlast codes))
-                            (#(do (println (pr-str %))
-                                  %))
-                            (apply dopy!))]
+        result  (->> codes
+                     last
+                     (assignment varname)
+                     vector
+                     (concat (butlast codes))
+                     (#(do (println (pr-str %))
+                           %))
+                     (apply dopy!))]
     (if (not (error? result))
       (getpy varname)
       result)))
 
 
+
+(defn ndarray [xs]
+  (NDArray. (double-array xs)))
+
+(defn ndarray->array [^NDArray a]
+  (.getData a))
+
+(def ndarray->vec
+  (comp vec ndarray->array))

@@ -21,8 +21,6 @@ For now, this is an experiment, not a library yet. To play with it:
 This will make it possible to generate code as clojure data structures (that get translated into hy forms).
 Currently, there is a problem -- `import hy` fails.
 
-### Numpy interop
-
 ## License
 
 Copyright © 2019 Scicloj

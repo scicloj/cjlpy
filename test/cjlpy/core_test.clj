@@ -28,3 +28,12 @@
   (is
    (error? (evalpy "1/0"))))
 
+
+(deftest numpy-test
+  (is
+   (->> (evalpy "import numpy as np"
+                "np.ones(4)")
+        ndarray->vec
+        (= (repeat 4 1.0)))))
+
+
