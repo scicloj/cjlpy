@@ -14,7 +14,7 @@
      (.addSharedModules (into-array String ["numpy" "sys"])))))
 
 (def at-thread
-  "Sending instruction to the same (new) jep object on the same thread.
+  "Sending instruction to the same jep object on the same thread.
   See https://github.com/ninia/jep/wiki/How-Jep-Works#threading-complications ."
   (let [in-channel  (async/chan 1)
         out-channel (async/chan 1)]
