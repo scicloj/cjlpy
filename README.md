@@ -7,14 +7,21 @@ Using Python from Clojure - experimental.
 Cljpy was already used. You can pronounce cjlpy like "kilpi".
 
 ---
-*Tell me right away if I’m disturbing you,*<br>
-*he said as he stepped inside my door,*<br>
-*and I’ll leave at once.*<br>
-*You not only disturb me, I said,*<br>
-*you shatter my entire existence.*<br>
-*Welcome.*<br>
+
+*Tell me right away if I’m disturbing you,*
+
+*he said as he stepped inside my door,*
+
+*and I’ll leave at once.*
+
+*You not only disturb me, I said,*
+
+*you shatter my entire existence.*
+
+*Welcome.*
+
  -- **Eeva Kilpi** (translated by Börje Vähämäki)
----
+
 
 ## Usage
 
