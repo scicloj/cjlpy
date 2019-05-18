@@ -36,16 +36,19 @@
       (async/<!! out-channel))))
 
 (defn setpy
+  "Set a python variable."
   [^String varname value]
   (at-thread
    [:set varname value]))
 
 (defn getpy
+  "Get a python variable's value."
   [varname]
   (at-thread
    [:get varname]))
 
 (defn dopy
+  "Eval a sequence of python codes, returning a data sructure describing the evaluation success or error. "
   [& codes]
   (->> codes
        (mapv (fn [code]
@@ -53,22 +56,25 @@
                 :result (at-thread
                          [:eval code])}))))
 
-(defn rand-varname []
+(defn rand-varname- []
   (str "x" (rand-int 99999999)))
 
-(defn assignment [varname code]
+(defn assignment- [varname code]
   (str varname "=(" code ")"))
 
-(defn error? [result]
+(defn error?
+  "Is the returned result an error?"
+  [result]
   (and (vector? result)
        (-> result first (= :error))))
 
 (defn evalpy
+  "Eval a sequence of python codes, and return the return value of the last one."
   [& codes]
-  (let [varname (rand-varname)
+  (let [varname (rand-varname-)
         result  (->> codes
                      last
-                     (assignment varname)
+                     (assignment- varname)
                      vector
                      (concat (butlast codes))
                      (#(do (println (pr-str %))
@@ -77,7 +83,6 @@
     (if (not (error? result))
       (getpy varname)
       result)))
-
 
 
 (defn ndarray [xs]
