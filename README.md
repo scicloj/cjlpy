@@ -6,6 +6,8 @@
 *Welcome.*  
  -- **Eeva Kilpi** (translated by Börje Vähämäki)
 
+---
+
 # cjlpy
 
 Using Python from Clojure - experimental.
@@ -13,9 +15,6 @@ Using Python from Clojure - experimental.
 ## Why the name cjlpy
 
 Cljpy was already used. You can pronounce cjlpy like "kilpi".
-
----
-
 
 ## Usage
 
